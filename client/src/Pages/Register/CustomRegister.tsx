@@ -5,7 +5,9 @@ import StepName from "../Steps/StepName/StepName";
 import StepOTP from "../Steps/StepOTP/StepOTP";
 import StepUserName from "../Steps/StepUserName/StepUserName";
 
-const Steps: { [key: number]: () => JSX.Element } = {
+const Steps: {
+  [key: number]: ({ onNext }: { onNext: () => void }) => JSX.Element;
+} = {
   1: StepEmail,
   2: StepOTP,
   3: StepName,
@@ -17,9 +19,14 @@ const CustomRegister = () => {
   useState(() => {});
   const [step, setStep] = useState(1);
   const Step = Steps[step];
+
+  const onNext = () => {
+    setStep((prev) => prev + 1);
+  };
+
   return (
     <div>
-      <Step />
+      <Step onNext={onNext} />
     </div>
   );
 };

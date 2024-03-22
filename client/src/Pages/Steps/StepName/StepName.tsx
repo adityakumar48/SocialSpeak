@@ -1,7 +1,12 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
 
-const StepName = () => {
-  return <div>StepName</div>;
+const StepName = ({ onNext }: { onNext: () => void }) => {
+  return (
+    <>
+      <div>ENTER Name STEP</div>
+      <Button onClick={onNext}>Next</Button>
+    </>
+  );
 };
 
 export default StepName;

@@ -1,7 +1,12 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
 
-const StepOTP = () => {
-  return <div>StepOTP</div>;
+const StepOTP = ({ onNext }: { onNext: () => void }) => {
+  return (
+    <>
+      <div>OTP VERIFICATION STEP</div>
+      <Button onClick={onNext}>Next</Button>
+    </>
+  );
 };
 
 export default StepOTP;
