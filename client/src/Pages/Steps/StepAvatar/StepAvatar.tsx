@@ -4,7 +4,7 @@ const StepAvatar = ({ onNext }: { onNext: () => void }) => {
   return (
     <>
       <div>StepAvatar</div>
-      <Button onClick={onNext}>Next</Button>;
+      <Button onClick={onNext}>Next</Button>
     </>
   );
 };
