@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { MdOutlineMail } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -17,6 +17,14 @@ interface MainCardProps {
 }
 
 const MainCard = ({ title, subText }: MainCardProps) => {
+  const navigate = useNavigate();
+
+  const startRegister = () => {
+    navigate("/authenticate");
+  };
+
+  const startLogin = () => {};
+
   return (
     <Card className="bg-[#1D1D1D] border-[#1D1D1D]/75 p-2 text-white">
       <CardHeader>
@@ -35,14 +43,14 @@ const MainCard = ({ title, subText }: MainCardProps) => {
         <div className="flex flex-col gap-3">
           <AuthCard />
 
-          <Card className="bg-[#121212]/70 hover:bg-[#121212]/90 hover:cursor-pointer  px-2 py-3 flex items-center justify-center gap-4 border-[#1D1D1D]/75">
+          <Card
+            onClick={title === "Register" ? startRegister : startLogin}
+            className="bg-[#121212]/70 hover:bg-[#121212]/90 hover:cursor-pointer  px-2 py-3 flex items-center justify-center gap-4 border-[#1D1D1D]/75"
+          >
             <MdOutlineMail className="text-neutral-200 " />
-            <Link
-              className="text-gray-300 text-lg "
-              to={title === "Register" ? "/register/custom" : "/login/custom"}
-            >
+            <button className="text-gray-300 text-lg ">
               Continue with Email
-            </Link>
+            </button>
           </Card>
 
           <p className="text-gray-400 text-xs text-center py-2">OR</p>

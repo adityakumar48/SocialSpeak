@@ -8,22 +8,31 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout.tsx";
 import GuestRoutes from "./components/Routes/GuestRoutes.tsx";
+import ProtectedRoutes from "./components/Routes/ProtectedRoutes.tsx";
+import SemiProtectedRoutes from "./components/Routes/SemiProtectedRoutes.tsx";
 import "./index.css";
+import Activate from "./Pages/Activate/Activate.tsx";
 import Home from "./Pages/Home/Home.tsx";
+import CustomLogin from "./Pages/Login/CustomLogin.tsx";
+import Login from "./Pages/Login/Login.tsx";
 import CustomRegister from "./Pages/Register/CustomRegister.tsx";
 import Register from "./Pages/Register/Register.tsx";
-import Login from "./Pages/Login/Login.tsx";
-import SemiProtectedRoutes from "./components/Routes/SemiProtectedRoutes.tsx";
-import Activate from "./Pages/Activate/Activate.tsx";
-import ProtectedRoutes from "./components/Routes/ProtectedRoutes.tsx";
 import Rooms from "./Pages/Rooms/Rooms.tsx";
-import CustomLogin from "./Pages/Login/CustomLogin.tsx";
+import Auth from "./Pages/Auth/Auth.tsx";
+import { Toaster } from "./components/ui/sonner.tsx";
+
+const user = {
+  activated: false,
+};
+
+const isAuth = false;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* Guest Routes */}
-      <Route path="/" element={<GuestRoutes />}>
+
+      <Route path="/" element={<GuestRoutes isAuth={isAuth} />}>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Home />} />
         </Route>
@@ -41,16 +50,22 @@ const router = createBrowserRouter(
 
       {/* Semi Protected Routes */}
 
-      <Route path="/authenticate" element={<GuestRoutes />}>
-        <Route path="" element={<Login />} />
+      <Route path="/authenticate" element={<GuestRoutes isAuth={isAuth} />}>
+        <Route path="" element={<Auth />} />
       </Route>
 
-      <Route path="/activate" element={<SemiProtectedRoutes />}>
+      <Route
+        path="/activate"
+        element={<SemiProtectedRoutes isAuth={isAuth} user={user} />}
+      >
         <Route path="" element={<Activate />} />
       </Route>
 
       {/* Protected Routes */}
-      <Route path="/rooms" element={<ProtectedRoutes />}>
+      <Route
+        path="/rooms"
+        element={<ProtectedRoutes user={user} isAuth={isAuth} />}
+      >
         <Route path="" element={<Rooms />} />
       </Route>
 
@@ -63,5 +78,6 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Toaster />
   </React.StrictMode>
 );
