@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StepEmail from "../Steps/StepEmail/StepEmail";
+import StepEmail from "../Steps/StepEmailAndPhone/StepEmail";
 import StepOTP from "../Steps/StepOTP/StepOTP";
 
 const Steps: {

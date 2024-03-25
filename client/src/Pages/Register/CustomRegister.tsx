@@ -1,6 +1,6 @@
 import { useState } from "react";
 import StepAvatar from "../Steps/StepAvatar/StepAvatar";
-import StepEmail from "../Steps/StepEmail/StepEmail";
+import StepEmail from "../Steps/StepEmailAndPhone/StepEmail";
 import StepName from "../Steps/StepName/StepName";
 import StepOTP from "../Steps/StepOTP/StepOTP";
 import StepUserName from "../Steps/StepUserName/StepUserName";
