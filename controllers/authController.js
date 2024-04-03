@@ -23,13 +23,12 @@ class AuthController {
 
     // Send OTP
     try {
-      await otpService.sendBySms(phone, otp);
-      res.json({ hash: `${hash}.${expires}`, phone });
+      // await otpService.sendBySms(phone, otp);
+      res.json({ hash: `${hash}.${expires}`, phone, otp });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Failed to send OTP" });
     }
-
   }
 
   async verifyOtp(req, res) {
@@ -38,7 +37,7 @@ class AuthController {
     if (!phone || !hash || !otp) {
       return res.status(400).json({ message: "All Fields are required" });
     }
-
+    
     const [hashedOtp, expires] = hash.split(".");
 
     if (Date.now() > +expires) {
@@ -67,15 +66,25 @@ class AuthController {
     }
 
     // Token
-    const { accessToken, refreshToken } = tokenService.generateTokens({_id:user._id,activated:false});
+    const { accessToken, refreshToken } = tokenService.generateTokens({
+      _id: user._id,
+      activated: false,
+    });
 
+    tokenService.storeRefreshToken(refreshToken, user._id);
+    
     res.cookie("refreshToken", refreshToken, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
     });
     
-    const userDto = new UserDto(user); 
-    res.json({ accessToken ,user: userDto });
+    res.cookie("accessToken", accessToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      httpOnly: true,
+    });
+
+    const userDto = new UserDto(user);
+    res.json({ user: userDto, authStatus: true });
   }
 }
 

@@ -13,11 +13,14 @@ const userSchema = new Schema({
         required: false,
         default: false,
     },
-    count:{
-        type: Number,
+    name:{
+        type: String,
         required: false,
-        default: 0,
-    }
+    },
+    avatar:{
+        type: String,
+        required: false,
+    },
 },{
     timestamps: true,
 })
