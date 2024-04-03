@@ -4,11 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner";
+import { sendOtp } from "../../../http/index";
+import { setOtp } from "../../../store/authSlice";
+import { useAppDispatch } from "@/store/hook";
 
 const StepEmail = ({ onNext }: { onNext: () => void }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [toggle, setToggle] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleEmailClick = () => {
     try {
@@ -29,7 +33,7 @@ const StepEmail = ({ onNext }: { onNext: () => void }) => {
     }
   };
 
-  const handlePhoneClick = () => {
+  const handlePhoneClick = async () => {
     try {
       // Phone Validation
       if (!phone) return toast("Phone Number is required!");
@@ -45,6 +49,15 @@ const StepEmail = ({ onNext }: { onNext: () => void }) => {
       if (phone.length < 10 || phone.length > 14) {
         return toast("Phone Number must be between 10 to 14 digits!");
       }
+
+      const { data } = await sendOtp({ phone });
+      console.log(data);
+      dispatch(
+        setOtp({
+          phone: data.phone,
+          hash: data.hash,
+        })
+      );
 
       // NEXT Step Call
       onNext();
@@ -121,7 +134,7 @@ const StepEmail = ({ onNext }: { onNext: () => void }) => {
             </div>
 
             <Button
-              onClick={() => handlePhoneClick()}
+              onClick={handlePhoneClick}
               className="mt-5 w-96 mx-auto flex bg-violet-600 hover:bg-violet-600/50 "
             >
               Send OTP

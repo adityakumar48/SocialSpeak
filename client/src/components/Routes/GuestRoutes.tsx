@@ -1,6 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "@/store/hook";
 
-const GuestRoutes = ({ isAuth }: { isAuth: boolean }) => {
+const GuestRoutes = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
+
   return isAuth ? <Navigate to="/rooms" /> : <Outlet />;
 };
 

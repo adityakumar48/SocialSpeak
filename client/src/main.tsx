@@ -20,19 +20,21 @@ import Register from "./Pages/Register/Register.tsx";
 import Rooms from "./Pages/Rooms/Rooms.tsx";
 import Auth from "./Pages/Auth/Auth.tsx";
 import { Toaster } from "./components/ui/sonner.tsx";
+import { store } from "./store";
+import { Provider } from "react-redux";
 
-const user = {
-  activated: false,
-};
+// const user = {
+//   activated: false,
+// };
 
-const isAuth = false;
+// const isAuth = false;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* Guest Routes */}
 
-      <Route path="/" element={<GuestRoutes isAuth={isAuth} />}>
+      <Route path="/" element={<GuestRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Home />} />
         </Route>
@@ -50,22 +52,16 @@ const router = createBrowserRouter(
 
       {/* Semi Protected Routes */}
 
-      <Route path="/authenticate" element={<GuestRoutes isAuth={isAuth} />}>
+      <Route path="/authenticate" element={<GuestRoutes />}>
         <Route path="" element={<Auth />} />
       </Route>
 
-      <Route
-        path="/activate"
-        element={<SemiProtectedRoutes isAuth={isAuth} user={user} />}
-      >
+      <Route path="/activate" element={<SemiProtectedRoutes />}>
         <Route path="" element={<Activate />} />
       </Route>
 
       {/* Protected Routes */}
-      <Route
-        path="/rooms"
-        element={<ProtectedRoutes user={user} isAuth={isAuth} />}
-      >
+      <Route path="/rooms" element={<ProtectedRoutes />}>
         <Route path="" element={<Rooms />} />
       </Route>
 
@@ -77,7 +73,9 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    <Toaster />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <Toaster />
+    </Provider>
   </React.StrictMode>
 );

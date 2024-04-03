@@ -1,15 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "@/store/hook";
 
-const SemiProtectedRoutes = ({
-  isAuth,
-  user,
-}: {
-  isAuth: boolean;
-  user: { activated: boolean };
-}) => {
+const SemiProtectedRoutes = () => {
+  const { isAuth, user } = useAppSelector((state) => state.auth);
   return !isAuth ? (
     <Navigate to={"/"} />
-  ) : isAuth && !user.activated ? (
+  ) : isAuth && !(user as { activated: boolean })?.activated ? (
     <Outlet />
   ) : (
     <Navigate to={"/rooms"} />
