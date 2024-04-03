@@ -15,10 +15,13 @@ class OtpService {
   }
   
   async sendBySms(phone, otp) {
+    console.log("phone", phone);
+    console.log("otp", otp);
     return await twilio.messages.create({
       to: phone,
       from: process.env.SMS_PHONE_NUMBER,
-      body: `Your OTP is ${otp}`,
+      body: `Your One-Time Password (OTP) is: ${otp}.\n\n
+      Please do not share this OTP with anyone for security reasons. `,
     });
   }
   

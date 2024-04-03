@@ -13,6 +13,11 @@ const userSchema = new Schema({
         required: false,
         default: false,
     },
+    count:{
+        type: Number,
+        required: false,
+        default: 0,
+    }
 },{
     timestamps: true,
 })

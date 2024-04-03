@@ -2,7 +2,7 @@ const hashService = require("../services/hashService");
 const otpService = require("../services/otpService");
 const tokenService = require("../services/tokenService");
 const userService = require("../services/userService");
-
+const UserDto = require("../dtos/user-dto");
 class AuthController {
   async sendOtp(req, res) {
     // Logic
@@ -73,8 +73,9 @@ class AuthController {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
     });
-
-    res.json({ accessToken });
+    
+    const userDto = new UserDto(user); 
+    res.json({ accessToken ,user: userDto });
   }
 }
 
