@@ -34,4 +34,33 @@ export const verifyOtp = (data: verifyOtpData): Promise<AxiosResponse> =>
 export const activate = (data: activateData): Promise<AxiosResponse> =>
   api.post("/api/v1/activate", data);
 
+export const logout = (): Promise<AxiosResponse> => api.post("/api/v1/logout");
+
+// Interceptors
+api.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    if (
+      error.response.status === 401 &&
+      originalRequest &&
+      !originalRequest._isRetry
+    ) {
+      originalRequest.isRetry = true;
+      try {
+        await axios.get(`http://localhost:8000/api/v1/refresh`, {
+          withCredentials: true,
+        });
+
+        return api.request(originalRequest);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    throw error;
+  }
+);
+
 export default api;

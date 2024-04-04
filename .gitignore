@@ -8,3 +8,6 @@ client/.env
 client/.env.local
 client/node_modules
 /client/node_modules
+storage
+storage/*
+/storage

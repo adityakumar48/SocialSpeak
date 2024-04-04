@@ -4,10 +4,10 @@ const refreshModel = require("../models/refreshModel");
 class TokenService {
   generateTokens(payload) {
     const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "1m",
     });
     const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-      expiresIn: "30d",
+      expiresIn: "1y",
     });
 
     return { accessToken, refreshToken };
@@ -20,9 +20,28 @@ class TokenService {
       console.log(err.message);
     }
   }
-  
-  async verifyAccessToken(token){
+
+  async verifyAccessToken(token) {
     return await jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  }
+
+  async verifyRefreshToken(token) {
+    return await jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+  }
+
+  async findRefreshToken(userId, refreshToken) {
+    return  await refreshModel.findOne({
+      userId: userId,
+      token: refreshToken,
+    });
+  }
+  
+  async updateRefreshToken(refreshToken, userId) {
+    return await refreshModel.updateOne({ _id: userId }, { token: refreshToken });
+  }
+  
+  async removeToken(refreshToken) {
+    return await refreshModel.deleteOne({ token: refreshToken });
   }
 }
 

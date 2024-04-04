@@ -1,5 +1,11 @@
+import Navigation from "@/components/shared/Navigation";
+
 const Rooms = () => {
-  return <div>Rooms</div>;
+  return (
+    <div>
+      <Navigation />
+    </div>
+  );
 };
 
 export default Rooms;
