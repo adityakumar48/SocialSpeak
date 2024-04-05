@@ -373,3 +373,26 @@ export const rooms = [
     listeners: 120,
   },
 ];
+
+export const techTitles = [
+  "Artificial Intelligence in Healthcare",
+  "Quantum Computing: The Future of Computing",
+  "Blockchain Technology and Its Applications",
+  "Augmented Reality in Education",
+  "Internet of Things (IoT) in Smart Homes",
+  "Cybersecurity Trends and Challenges",
+  "Big Data Analytics for Business Intelligence",
+  "5G Technology and Its Impact on Communication",
+  "Cloud Computing Solutions for Businesses",
+  "Machine Learning Algorithms and Applications",
+  "Virtual Reality Gaming Experiences",
+  "Robotics in Manufacturing Industry",
+  "Natural Language Processing for Chatbots",
+  "Biometric Security Systems Advancements",
+  "Edge Computing: Bringing Processing Closer to Data",
+  "Autonomous Vehicles and Their Development",
+  "Drones: From Hobby to Commercial Applications",
+  "Fintech Innovations: Changing Finance Industry",
+  "Genomic Sequencing and Personalized Medicine",
+  "Smart Cities: Utilizing Technology for Urban Development",
+];

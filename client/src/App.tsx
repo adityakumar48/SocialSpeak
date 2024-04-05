@@ -19,6 +19,7 @@ import ProtectedRoutes from "./components/Routes/ProtectedRoutes.tsx";
 import SemiProtectedRoutes from "./components/Routes/SemiProtectedRoutes.tsx";
 import useLoadingWithRefresh from "./hooks/useLoadingWithRefresh.tsx";
 import Loader from "./components/shared/Loader.tsx";
+import Room from "./Pages/Rooms/Room.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -54,6 +55,9 @@ const router = createBrowserRouter(
       {/* Protected Routes */}
       <Route path="/rooms" element={<ProtectedRoutes />}>
         <Route path="" element={<Rooms />} />
+      </Route>
+      <Route path="/room" element={<ProtectedRoutes />}>
+        <Route path=":id" element={<Room />} />
       </Route>
 
       {/* 404 Not Found */}

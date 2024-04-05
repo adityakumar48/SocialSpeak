@@ -15,6 +15,11 @@ interface activateData {
   avatar: string;
 }
 
+interface createRoomData {
+  roomName: string;
+  roomType: string;
+}
+
 const api = axios.create({
   baseURL: "http://localhost:8000",
   withCredentials: true,
@@ -35,6 +40,12 @@ export const activate = (data: activateData): Promise<AxiosResponse> =>
   api.post("/api/v1/activate", data);
 
 export const logout = (): Promise<AxiosResponse> => api.post("/api/v1/logout");
+
+export const createRoom = (data: createRoomData): Promise<AxiosResponse> =>
+  api.post("/api/v1/rooms", data);
+
+export const getAllRooms = (): Promise<AxiosResponse> =>
+  api.get("/api/v1/rooms");
 
 // Interceptors
 api.interceptors.response.use(

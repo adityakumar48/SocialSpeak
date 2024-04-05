@@ -1,4 +1,6 @@
+import AddRoomModal from "@/components/shared/AddRoomModal";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Search, Users } from "lucide-react";
 
@@ -19,11 +21,18 @@ const RoomHeader = () => {
           />
         </div>
       </div>
-
       <div>
-        <Button className=" w-34 mx-auto flex gap-1 items-center rounded-2xl bg-violet-600 hover:bg-violet-600/50 ">
-          <Users size={18} /> Create Room
-        </Button>
+        <Dialog>
+          <DialogTrigger>
+            {" "}
+            <Button className="w-34 mx-auto flex gap-1 items-center rounded-2xl bg-violet-600 hover:bg-violet-600/50 ">
+              <Users size={18} /> Create Room
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <AddRoomModal />
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

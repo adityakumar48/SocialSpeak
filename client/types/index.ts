@@ -1,8 +1,15 @@
 export interface roomType {
-  id: number;
-  topic: string;
-  description: string;
-  speaker: {
+  id: string;
+  createdAt: string;
+  ownerId: {
+    id: number;
+    name: string;
+    avatar: string;
+    activated: boolean;
+  };
+  roomName: string;
+  roomType: string;
+  speakers: {
     id: number;
     name: string;
     avatar: string;
