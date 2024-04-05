@@ -17,7 +17,7 @@ const corsOptions = {
 
 app.use(cookeParser())
 app.use('/storage',express.static('storage'))
-app.use(express.json({ limit:'8mb' ,extended: true}));
+app.use(express.json({ limit:'10mb' }));
 app.use(cors(corsOptions))
 
 app.use('/api/v1', router);

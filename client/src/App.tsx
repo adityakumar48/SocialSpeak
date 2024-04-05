@@ -18,6 +18,7 @@ import GuestRoutes from "./components/Routes/GuestRoutes.tsx";
 import ProtectedRoutes from "./components/Routes/ProtectedRoutes.tsx";
 import SemiProtectedRoutes from "./components/Routes/SemiProtectedRoutes.tsx";
 import useLoadingWithRefresh from "./hooks/useLoadingWithRefresh.tsx";
+import Loader from "./components/shared/Loader.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -63,7 +64,8 @@ const router = createBrowserRouter(
 
 const App = () => {
   const { loading } = useLoadingWithRefresh();
-  return loading ? "loading..." : <RouterProvider router={router} />;
+
+  return loading ? <Loader /> : <RouterProvider router={router} />;
 };
 
 export default App;

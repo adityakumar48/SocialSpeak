@@ -1,3 +1,4 @@
+import Loader from "@/components/shared/Loader";
 import Navigation from "@/components/shared/Navigation";
 import StepCard from "@/components/shared/StepCard";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -11,6 +12,7 @@ import React, { useState } from "react";
 const StepAvatar = () => {
   const { name, avatar } = useAppSelector((state) => state.activate);
   const [image, setImage] = useState<string>("https://github.com/shadcn.png");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -28,18 +30,22 @@ const StepAvatar = () => {
   };
 
   const handleClick = async () => {
+    setLoading(true);
     try {
       const { data } = await activate({ name, avatar });
 
       if (data.auth) {
         dispatch(setAuth(data));
       }
-
-      console.log(data);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) return <Loader message="Activating Please Wait Sometime..." />;
+
   return (
     <>
       <Navigation />
