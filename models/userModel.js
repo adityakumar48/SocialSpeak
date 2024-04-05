@@ -20,9 +20,11 @@ const userSchema = new Schema({
     avatar:{
         type: String,
         required: false,
+        get:(avatar)=>`http://localhost:8000${avatar}`,
     },
 },{
     timestamps: true,
+    toJSON: { getters: true },
 })
 
 module.exports = mongoose.model("User", userSchema,"users");
