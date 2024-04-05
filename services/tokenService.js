@@ -21,12 +21,12 @@ class TokenService {
     }
   }
 
-  async verifyAccessToken(token) {
-    return await jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  async verifyAccessToken(accessToken) {
+    return jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
   }
 
-  async verifyRefreshToken(token) {
-    return await jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+  async verifyRefreshToken(refreshToken) {
+    return jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
   }
 
   async findRefreshToken(userId, refreshToken) {
