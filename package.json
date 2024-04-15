@@ -19,6 +19,7 @@
     "express": "^4.18.3",
     "jimp": "^0.22.12",
     "jsonwebtoken": "^9.0.2",
+    "moment-timezone": "^0.5.45",
     "mongoose": "^8.2.3",
     "morgan": "^1.10.0",
     "socket.io": "^4.7.5",

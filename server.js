@@ -5,9 +5,21 @@ const router = require("./routes");
 const DBConnect = require("./database");
 const cookeParser = require("cookie-parser");
 const ACTIONS = require("./actions");
+const morgan = require("morgan");
+const {
+  logGenerator,
+  morganMiddleware,
+  morganAllRequests,
+} = require("./util/logGenerator");
 
 const app = express();
 const server = require("http").createServer(app);
+
+// Middleware
+app.use(morganMiddleware);
+app.use(morganAllRequests);
+app.use(morgan("dev"));
+logGenerator();
 
 const io = require("socket.io")(server, {
   cors: {
@@ -40,7 +52,7 @@ app.get("/", (req, res) => {
 const socketUserMapping = {};
 
 io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
+  console.log(`A User Connected - ${socket?.id}`);
 
   socket.on(ACTIONS.JOIN, ({ roomId, user }) => {
     socketUserMapping[socket.id] = user;
@@ -79,34 +91,32 @@ io.on("connection", (socket) => {
       sessionDescription,
     });
   });
-  
-  
-    // handle Mute
-    socket.on(ACTIONS.MUTE,({roomId,userId})=>{
-      console.log('mute',userId)
-        const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
-        
-        clients.forEach((clientId)=>{
-            io.to(clientId).emit(ACTIONS.MUTE,{
-                peerId:socket.id,
-                userId,
-            })
-        })
-    })
-    
-    // handle UnMute
-    socket.on(ACTIONS.UNMUTE,({roomId,userId})=>{
-      console.log('unmute',userId)
-        const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
-        
-        clients.forEach((clientId)=>{
-            io.to(clientId).emit(ACTIONS.UNMUTE,{
-                peerId:socket.id,
-                userId,
-            })
-        })
-    })
-  
+
+  // handle Mute
+  socket.on(ACTIONS.MUTE, ({ roomId, userId }) => {
+    console.log(`Mute Triggered on room - ${roomId} by User - ${userId}`);
+    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
+
+    clients.forEach((clientId) => {
+      io.to(clientId).emit(ACTIONS.MUTE, {
+        peerId: socket.id,
+        userId,
+      });
+    });
+  });
+
+  // handle UnMute
+  socket.on(ACTIONS.UNMUTE, ({ roomId, userId }) => {
+    console.log("unmute", userId);
+    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
+
+    clients.forEach((clientId) => {
+      io.to(clientId).emit(ACTIONS.UNMUTE, {
+        peerId: socket.id,
+        userId,
+      });
+    });
+  });
 
   // Leave the room
   const leaveRoom = ({ roomId }) => {
@@ -121,10 +131,13 @@ io.on("connection", (socket) => {
           user: socketUserMapping[socket.id]?.id,
         });
 
-        socket.emit(ACTIONS.REMOVE_PEER, { peerId: client , user: socketUserMapping[client]?.id,});
-    });
+        socket.emit(ACTIONS.REMOVE_PEER, {
+          peerId: client,
+          user: socketUserMapping[client]?.id,
+        });
+      });
 
-    socket.leave(room);
+      socket.leave(room);
     });
     delete socketUserMapping[socket.id];
   };
