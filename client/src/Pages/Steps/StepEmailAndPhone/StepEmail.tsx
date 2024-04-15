@@ -51,7 +51,6 @@ const StepEmail = ({ onNext }: { onNext: () => void }) => {
       }
 
       const { data } = await sendOtp({ phone });
-      console.log(data);
       dispatch(
         setOtp({
           phone: data.phone,
