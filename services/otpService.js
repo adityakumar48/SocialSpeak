@@ -18,7 +18,7 @@ class OtpService {
     console.log("phone", phone);
     console.log("otp", otp);
     return await twilio.messages.create({
-      to: phone,
+      to: `+91 ${phone}`,
       from: process.env.SMS_PHONE_NUMBER,
       body: `Your One-Time Password (OTP) is: ${otp}.\n\n
       Please do not share this OTP with anyone for security reasons. `,

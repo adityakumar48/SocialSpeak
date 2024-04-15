@@ -16,3 +16,10 @@ export interface roomType {
   }[];
   listeners: number;
 }
+
+export interface UserType {
+  id: number;
+  name: string;
+  avatar: string;
+  activated: boolean;
+}

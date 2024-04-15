@@ -47,6 +47,9 @@ export const createRoom = (data: createRoomData): Promise<AxiosResponse> =>
 export const getAllRooms = (): Promise<AxiosResponse> =>
   api.get("/api/v1/rooms");
 
+export const getRoom = (roomId: string): Promise<AxiosResponse> =>
+  api.get(`/api/v1/rooms/${roomId}`);
+
 // Interceptors
 api.interceptors.response.use(
   (config) => {

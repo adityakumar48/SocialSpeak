@@ -1,9 +1,9 @@
 export const rooms = [
   {
     id: 1,
-    topic: "Artificial Intelligence in Healthcare",
+    roomName: "Artificial Intelligence in Healthcare",
     description: "Discussion on AI applications in healthcare industry",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Amit Patel",
@@ -19,9 +19,9 @@ export const rooms = [
   },
   {
     id: 2,
-    topic: "Blockchain Technology: Beyond Cryptocurrency",
+    roomName: "Blockchain Technology: Beyond Cryptocurrency",
     description: "Exploring various use cases of blockchain beyond finance",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Rajesh Singh",
@@ -37,9 +37,9 @@ export const rooms = [
   },
   {
     id: 3,
-    topic: "Machine Learning for Beginners",
+    roomName: "Machine Learning for Beginners",
     description: "Introduction to machine learning concepts and algorithms",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Sandeep Kumar",
@@ -55,9 +55,9 @@ export const rooms = [
   },
   {
     id: 4,
-    topic: "Cybersecurity: Protecting Your Digital Assets",
+    roomName: "Cybersecurity: Protecting Your Digital Assets",
     description: "Tips and strategies to enhance cybersecurity measures",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Vikram Singh",
@@ -73,9 +73,9 @@ export const rooms = [
   },
   {
     id: 5,
-    topic: "Data Visualization Techniques",
+    roomName: "Data Visualization Techniques",
     description: "Exploring various methods for visualizing data effectively",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Arun Sharma",
@@ -91,10 +91,10 @@ export const rooms = [
   },
   {
     id: 6,
-    topic: "Python for Data Analysis",
+    roomName: "Python for Data Analysis",
     description:
       "Introduction to using Python for data manipulation and analysis",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Ravi Gupta",
@@ -110,10 +110,10 @@ export const rooms = [
   },
   {
     id: 7,
-    topic: "Cloud Computing Fundamentals",
+    roomName: "Cloud Computing Fundamentals",
     description:
       "Understanding the basics of cloud computing and its applications",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Rahul Sharma",
@@ -129,10 +129,10 @@ export const rooms = [
   },
   {
     id: 8,
-    topic: "Artificial Intelligence Ethics",
+    roomName: "Artificial Intelligence Ethics",
     description:
       "Discussion on the ethical considerations in AI development and deployment",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Vivek Jain",
@@ -148,9 +148,9 @@ export const rooms = [
   },
   {
     id: 9,
-    topic: "Introduction to Quantum Computing",
+    roomName: "Introduction to Quantum Computing",
     description: "An overview of quantum computing principles and applications",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Karan Malhotra",
@@ -166,10 +166,10 @@ export const rooms = [
   },
   {
     id: 10,
-    topic: "Frontend Development Trends",
+    roomName: "Frontend Development Trends",
     description:
       "Exploring the latest trends and technologies in frontend development",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Rohit Sharma",
@@ -185,10 +185,10 @@ export const rooms = [
   },
   {
     id: 11,
-    topic: "Natural Language Processing Basics",
+    roomName: "Natural Language Processing Basics",
     description:
       "Introduction to basic concepts and techniques in natural language processing",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Amit Verma",
@@ -204,10 +204,10 @@ export const rooms = [
   },
   {
     id: 12,
-    topic: "DevOps Principles and Practices",
+    roomName: "DevOps Principles and Practices",
     description:
       "Understanding the principles and practices of DevOps methodology",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Nitin Gupta",
@@ -223,10 +223,10 @@ export const rooms = [
   },
   {
     id: 13,
-    topic: "Internet of Things (IoT) Applications",
+    roomName: "Internet of Things (IoT) Applications",
     description:
       "Exploring various applications and use cases of Internet of Things",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Deepak Singh",
@@ -242,10 +242,10 @@ export const rooms = [
   },
   {
     id: 14,
-    topic: "Agile Project Management",
+    roomName: "Agile Project Management",
     description:
       "Understanding agile methodologies for effective project management",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Ankit Jain",
@@ -261,10 +261,10 @@ export const rooms = [
   },
   {
     id: 15,
-    topic: "Mobile App Security Best Practices",
+    roomName: "Mobile App Security Best Practices",
     description:
       "Best practices for ensuring security in mobile app development",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Arun Singh",
@@ -280,10 +280,10 @@ export const rooms = [
   },
   {
     id: 16,
-    topic: "Introduction to Docker Containers",
+    roomName: "Introduction to Docker Containers",
     description:
       "An overview of Docker containers and their use in software development",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Vijay Patel",
@@ -299,10 +299,10 @@ export const rooms = [
   },
   {
     id: 17,
-    topic: "Advanced JavaScript Techniques",
+    roomName: "Advanced JavaScript Techniques",
     description:
       "Advanced techniques and best practices in JavaScript programming",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Rajat Sharma",
@@ -318,9 +318,9 @@ export const rooms = [
   },
   {
     id: 18,
-    topic: "Ethical Hacking Fundamentals",
+    roomName: "Ethical Hacking Fundamentals",
     description: "Introduction to ethical hacking principles and techniques",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Aakash Gupta",
@@ -336,10 +336,10 @@ export const rooms = [
   },
   {
     id: 19,
-    topic: "UI/UX Design Trends",
+    roomName: "UI/UX Design Trends",
     description:
       "Exploring the latest trends in UI/UX design for digital products",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Vikas Sharma",
@@ -355,10 +355,10 @@ export const rooms = [
   },
   {
     id: 20,
-    topic: "Introduction to React Native",
+    roomName: "Introduction to React Native",
     description:
       "An introduction to building mobile apps using React Native framework",
-    speaker: [
+    speakers: [
       {
         id: 1,
         name: "Rohan Patel",

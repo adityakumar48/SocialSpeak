@@ -1,4 +1,4 @@
-import { roomType } from "types";
+import { roomType } from "@/types";
 import { Card } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Mic, User } from "lucide-react";

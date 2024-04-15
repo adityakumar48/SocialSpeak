@@ -1,7 +1,7 @@
 import Navigation from "@/components/shared/Navigation";
 import RoomHeader from "./RoomHeader";
 import RoomCard from "@/components/RoomCard";
-import { roomType } from "../../../types/index";
+import { roomType } from "../../types/index";
 import { useEffect, useState } from "react";
 import { getAllRooms } from "@/http";
 

@@ -24,7 +24,11 @@ class AuthController {
     // Send OTP
     try {
       // await otpService.sendBySms(phone, otp);
-      res.json({ hash: `${hash}.${expires}`, phone, otp });
+      res.json({
+        hash: `${hash}.${expires}`,
+        phone,
+        otp
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Failed to send OTP" });
@@ -95,7 +99,7 @@ class AuthController {
       userData = await tokenService.verifyRefreshToken(refreshTokenFromCookie);
     } catch (error) {
       console.log(error);
-      console.log("Invalid Token");
+      console.log("Invalid Token Issue");
       return res.status(401).json({ message: "Invalid Token" });
     }
 
@@ -103,10 +107,10 @@ class AuthController {
       const token = await tokenService.findRefreshToken(
         userData._id,
         refreshTokenFromCookie
-      );
+    );
 
       if (!token) {
-        console.log("Invalid Token");
+        console.log("Dont Have Token");
         return res.status(401).json({ message: "Invalid Token" });
       }
     } catch (err) {
@@ -123,15 +127,15 @@ class AuthController {
     const { refreshToken, accessToken } = tokenService.generateTokens({
       _id: user._id,
     });
-    
+
     // Update Refresh Token
-    try{
+    try {
       await tokenService.updateRefreshToken(refreshToken, user._id);
-    }catch(err){
+    } catch (err) {
       console.log(err);
       return res.status(500).json({ message: "Internal Error" });
     }
-    
+
     res.cookie("refreshToken", refreshToken, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
@@ -144,18 +148,17 @@ class AuthController {
 
     const userDto = new UserDto(user);
     res.json({ user: userDto, authStatus: true });
-    
   }
-  
-  async logout(req,res){
+
+  async logout(req, res) {
     const { refreshToken } = req.cookies;
     // delete refresh token
     await tokenService.removeToken(refreshToken);
-    
+
     // delete cookies
     res.clearCookie("refreshToken");
     res.clearCookie("raccessToken");
-    res.json({ user: null, auth: false})
+    res.json({ user: null, auth: false });
   }
 }
 
