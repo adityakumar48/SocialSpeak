@@ -68,7 +68,6 @@ const router = createBrowserRouter(
 
 const App = () => {
   const { loading } = useLoadingWithRefresh();
-
   return loading ? <Loader /> : <RouterProvider router={router} />;
 };
 
