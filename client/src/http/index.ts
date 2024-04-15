@@ -21,7 +21,7 @@ interface createRoomData {
 }
 
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -64,7 +64,7 @@ api.interceptors.response.use(
     ) {
       originalRequest.isRetry = true;
       try {
-        await axios.get(`http://localhost:8000/api/v1/refresh`, {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/refresh`, {
           withCredentials: true,
         });
 

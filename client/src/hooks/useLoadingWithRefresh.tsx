@@ -11,7 +11,7 @@ const useLoadingWithRefresh = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v1/refresh`,
+          `${import.meta.env.VITE_API_URL}/api/v1/refresh`,
           {
             withCredentials: true,
           }
