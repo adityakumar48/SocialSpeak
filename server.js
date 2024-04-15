@@ -23,7 +23,7 @@ logGenerator();
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://social-speak.vercel.app",
     methods: ["GET", "POST"],
   },
 });
@@ -33,7 +33,7 @@ DBConnect();
 
 const corsOptions = {
   credentials: true,
-  origin: ["http://localhost:5173"],
+  origin: ["https://social-speak.vercel.app"],
 };
 
 app.use(cookeParser());

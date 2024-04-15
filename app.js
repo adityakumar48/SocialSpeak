@@ -5,6 +5,7 @@ const totalCPUs = os.cpus().length;
 
 if (cluster.isPrimary) {
   for (let i = 0; i < totalCPUs; i++) {
+    console.log(`Forking process number ${i}...`);
     cluster.fork();
   }
 
